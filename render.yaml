@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: shappno-level-up
+    runtime: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    healthCheckPath: /healthz
+    disk:
+      name: shappno-level-up-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.9"
+      - key: PYTHONUNBUFFERED
+        value: "1"
+      - key: DATA_DIR
+        value: /var/data
